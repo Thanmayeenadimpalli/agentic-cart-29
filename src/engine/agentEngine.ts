@@ -46,7 +46,7 @@ export function parseIntent(rawInput: string): ParsedConstraints {
   for (const re of budgetPatterns) {
     const m = input.match(re);
     if (m) {
-      const n = parseFloat(m[1].replace(/,/g, ""));
+      const n = parseFloat((m[1] ?? "").replace(/,/g, ""));
       if (!Number.isNaN(n)) {
         budget = m[2] ? n * 1000 : n;
         break;
@@ -138,7 +138,7 @@ export interface SelectionResult {
 }
 
 function defaultSize(p: Product) {
-  return p.category === "Footwear" ? p.sizes[2] ?? p.sizes[0] : p.sizes[2] ?? p.sizes[0];
+  return p.sizes[2] ?? p.sizes[0] ?? "One Size";
 }
 
 export function requiredCategoriesFor(c: ParsedConstraints): Category[] {
@@ -163,7 +163,7 @@ export function selectItems(c: ParsedConstraints, candidates: Product[]): Select
 
   // Reserve budget so later categories are still reachable.
   for (let i = 0; i < required.length; i++) {
-    const cat = required[i];
+    const cat = required[i]!;
     const slotsLeft = required.length - i;
     const pool = candidates
       .filter((p) => p.category === cat && !items.some((it) => it.product.id === p.id))
@@ -205,7 +205,7 @@ export function selectItems(c: ParsedConstraints, candidates: Product[]): Select
       continue;
     }
 
-    const chosen = affordable[0];
+    const chosen = affordable[0]!;
     const runnersUp: RejectedAlternative[] = affordable
       .slice(1, 4)
       .map((p) => ({
@@ -231,7 +231,7 @@ export function selectItems(c: ParsedConstraints, candidates: Product[]): Select
       product: chosen,
       quantity: 1,
       selectedSize: defaultSize(chosen),
-      selectedColor: chosen.colors[0],
+      selectedColor: chosen.colors[0] ?? "Default",
       reasonAddedByAgent: decision.justification,
       decision,
     });
@@ -261,7 +261,7 @@ export function closestAchievable(c: ParsedConstraints, candidates: Product[]): 
   if (!affordable.length) {
     return [...products].sort((a, b) => a.price - b.price)[0] ?? null;
   }
-  return affordable.sort((a, b) => scoreProduct(b, c) - scoreProduct(a, c))[0];
+  return affordable.sort((a, b) => scoreProduct(b, c) - scoreProduct(a, c))[0] ?? null;
 }
 
 export function makeId(prefix: string) {

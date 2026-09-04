@@ -69,6 +69,7 @@ export function RazorpaySimModal() {
       }, 1600);
       return () => clearTimeout(t);
     }
+    return undefined;
   }, [paymentStatus, activeOrder, navigate, clear, closePayment, resetSession]);
 
   if (!activeOrder) return null;

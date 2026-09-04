@@ -24,7 +24,8 @@ function reducer(state: CartItem[], action: Action): CartItem[] {
       );
       if (idx >= 0) {
         const next = [...state];
-        next[idx] = { ...next[idx], quantity: next[idx].quantity + action.item.quantity };
+        const existing = next[idx]!;
+        next[idx] = { ...existing, quantity: existing.quantity + action.item.quantity };
         return next;
       }
       return [...state, action.item];
@@ -93,8 +94,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
           item: {
             product,
             quantity: opts?.quantity ?? 1,
-            selectedSize: opts?.size ?? product.sizes[0],
-            selectedColor: opts?.color ?? product.colors[0],
+            selectedSize: opts?.size ?? product.sizes[0] ?? "One Size",
+            selectedColor: opts?.color ?? product.colors[0] ?? "Default",
           },
         }),
       addAgentItems: (newItems) => dispatch({ type: "addMany", items: newItems }),

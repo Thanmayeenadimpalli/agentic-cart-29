@@ -9,17 +9,17 @@ interface State {
 }
 
 export class ErrorBoundary extends Component<Props, State> {
-  state: State = { hasError: false, message: "" };
+  override state: State = { hasError: false, message: "" };
 
   static getDerivedStateFromError(error: Error): State {
     return { hasError: true, message: error.message };
   }
 
-  componentDidCatch(error: Error, info: ErrorInfo) {
+  override componentDidCatch(error: Error, info: ErrorInfo) {
     console.error("AgenticCart error boundary:", error, info);
   }
 
-  render() {
+  override render() {
     if (this.state.hasError) {
       return (
         <div className="flex min-h-screen items-center justify-center bg-background px-4">
