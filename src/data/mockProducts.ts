@@ -19,7 +19,7 @@ const seeds: Seed[] = [
   // Outerwear
   ["Quilted Bomber Jacket", "Outerwear", 2499, 4.5, 18, ["winter", "outerwear", "casual"], ["Black", "Olive", "Navy"], "Lightweight quilted bomber with ribbed cuffs and a water-repellent shell."],
   ["Merino Wool Overcoat", "Outerwear", 7899, 4.8, 6, ["winter", "outerwear", "formal", "premium"], ["Charcoal", "Camel"], "Tailored double-faced merino overcoat with a clean notch lapel."],
-  ["Sherpa-Lined Denim Jacket", "Outerwear", 3299, 4.3, 12, ["winter", "outerwear", "casual"], ["Indigo", "Stone"], "Rigid denim jacket lined with plush sherpa for cold-weather layering."},
+  ["Sherpa-Lined Denim Jacket", "Outerwear", 3299, 4.3, 12, ["winter", "outerwear", "casual"], ["Indigo", "Stone"], "Rigid denim jacket lined with plush sherpa for cold-weather layering."],
   ["Packable Puffer Jacket", "Outerwear", 3899, 4.6, 20, ["winter", "outerwear", "premium"], ["Black", "Rust", "Teal"], "600-fill packable puffer that folds into its own pocket."],
   ["Fleece Zip Hoodie", "Outerwear", 1499, 4.2, 34, ["winter", "casual", "outerwear", "budget"], ["Grey", "Black"], "Brushed-back fleece hoodie with a full-length YKK zip."],
   ["Cable Knit Sweater", "Outerwear", 1899, 4.4, 22, ["winter", "casual", "outerwear"], ["Cream", "Forest"], "Chunky cable knit crewneck in a soft wool blend."],
